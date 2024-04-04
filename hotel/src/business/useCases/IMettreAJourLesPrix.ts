@@ -1,6 +1,6 @@
-import { IStringPresenter } from "../../presenters/IStringPresenter";
+import { IChambrePresenter } from "../../presenters/IChambrePresenter";
 
 export interface IMettreAJourLesPrix {
 
-	execute(presenter: IStringPresenter, prix: number): void;
+	execute(presenter: IChambrePresenter, prix: number): void;
 }

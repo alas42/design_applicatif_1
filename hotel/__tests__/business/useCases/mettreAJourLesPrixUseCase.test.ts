@@ -3,13 +3,13 @@ import { ChambreDao } from '../../../src/gateways/ChambreDao';
 import { IChambreDao } from '../../../src/gateways/IChambreDao';
 import { IMettreAJourLesPrix } from '../../../src/business/useCases/IMettreAJourLesPrix'
 import { MettreAJourLesPrixUseCase } from '../../../src/business/useCases/MettreAJourLesPrixUseCase'
-import { IStringPresenter } from '../../../src/presenters/IStringPresenter'
-import { StringPresenter } from '../../../src/presenters/StringPresenter'
+import { IChambrePresenter } from '../../../src/presenters/IChambrePresenter'
+import { ChambrePresenter } from '../../../src/presenters/ChambrePresenter'
 
 describe("use case: mettre a jour les prix d'une chambre", () => {
   test('Mettre a jour les prix des chambres changent leurs prix', () => {
     const chambreDao: IChambreDao = new ChambreDao()
-    const presenter: IStringPresenter = new StringPresenter()
+    const presenter: IChambrePresenter = new ChambrePresenter()
     const listDeChambres: Chambre[] = [
       new Chambre(0, 1, 50),
       new Chambre(0, 2, 50),
@@ -84,7 +84,7 @@ Array [
   })
   test('Le presenteur présente les chambres sous formes de chaines de caractères', () => {
     const chambreDao: IChambreDao = new ChambreDao()
-    const presenter: IStringPresenter = new StringPresenter()
+    const presenter: IChambrePresenter = new ChambrePresenter()
     const listDeChambres: Chambre[] = [
       new Chambre(0, 1, 50),
       new Chambre(0, 2, 50),
@@ -104,7 +104,7 @@ Array [
     //when
 
     mettreAJourLesPrix.execute(presenter, 100)
-    expect(presenter.present()).toMatchInlineSnapshot(`
+    expect(presenter.getChaine()).toMatchInlineSnapshot(`
 "Chambre numero : 1 - etage : 0 prix : 100 |
 Chambre numero : 2 - etage : 0 prix : 100 |
 Chambre numero : 101 - etage : 1 prix : 107 |

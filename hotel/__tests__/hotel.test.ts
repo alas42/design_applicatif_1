@@ -1,6 +1,7 @@
 import { Chambre } from '../src/business/entities/Chambre';
 import {Hotel} from '../src/business/entities/Hotel'
-import {ChambreDao, ChambreServiceImpl} from '../src/gateways/ChambreServiceImpl';
+import {ChambreServiceImpl} from '../src/gateways/ChambreServiceImpl';
+import {ChambreDao} from '../src/gateways/ChambreDao';
 
 describe("chambre de l'hotel", () => {
 	test("Quand je recupère les chambres, elles me sont données", () => {
