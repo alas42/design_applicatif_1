@@ -1,20 +1,19 @@
-import { IChambreDao } from "../../gateways/IChambreDao";
 import { IChambrePresenter } from "../../presenters/IChambrePresenter";
-import { Chambre } from "../entities/Chambre";
+import { Hotel } from "../entities/Hotel";
+import { IHotelRepository } from "../repositories/IHotelRepository";
 import { IMettreAJourLesPrix } from "./IMettreAJourLesPrix";
 
 export class MettreAJourLesPrixUseCase implements IMettreAJourLesPrix{
 
-	chambreDao: IChambreDao;
+	hotelRepository: IHotelRepository;
 
-	constructor(chambreDao: IChambreDao) {
-		this.chambreDao = chambreDao;
+	constructor(hotelRepository: IHotelRepository) {
+		this.hotelRepository = hotelRepository;
 	}
 
-	execute(presenter: IChambrePresenter, prix: number): void {
-		let chambres: Chambre[] = this.chambreDao.recupererLesChambres();
-		chambres.forEach((chambre) => chambre.changerPrix(prix));
-		this.chambreDao.mettreAJourLesChambres(chambres);
-		presenter.seed(this.chambreDao.recupererLesChambres());
+	execute(prix: number): void {
+		const hotel: Hotel = this.hotelRepository.recupererHotel();
+		hotel.mettreAJourLesPrix(prix);
+		this.hotelRepository.mettreAJourHotel(hotel);
 	}
 }
